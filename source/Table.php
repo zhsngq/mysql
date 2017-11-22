@@ -28,4 +28,18 @@ class Table extends Base {
 		return $res;
 	}
 
+	/**
+	 * 获取表字段
+	 * @date   2017-11-22T15:14:10+0800
+	 * @return array
+	 */
+	function getColnm(){
+		preg_match_all('/\n\s+`\w+`/m', $sql, $result, PREG_PATTERN_ORDER);
+		$result = $result[0];
+		foreach ($result as &$value) {
+		    $value = preg_replace('/\n\s+/m','',$value);
+		}
+		return $result;
+	}
+
 }
