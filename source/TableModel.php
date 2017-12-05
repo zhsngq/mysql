@@ -6,6 +6,8 @@ class TableModel {
 
 	public $childen = [];
 
+    public $diffmap = [];
+
 	function __construct($sql) {
 		preg_match_all('/(\S|\ )+/m', $sql, $result, PREG_PATTERN_ORDER);
 		$result = $result[0];
@@ -44,6 +46,23 @@ class TableModel {
     private function substr(&$string){
         $string = preg_replace('/(\ +`\S+`\ +|,\n)/m', '', $string);
         return $string;
+    }
+
+    /**
+     * 获取不一致字段
+     * @date   2017-12-05T15:47:57+0800
+     */
+    public function diff(TableModel $model){
+        $this->diffmap = array_diff_key($this->childen,$model->childen);
+        foreach ($this->childen as $key => $value) {
+            if (!isset($model->childen)) {
+                $this->diffmap[$key] = 'del';
+                continue;
+            }
+            if ($value != $model->childen[$key]) {
+                $this->diffmap[$key] = 'eidt';
+            }
+        }
     }
 
 }
