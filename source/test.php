@@ -1,5 +1,5 @@
 <?php
 require_once 'load.php';
-sd(
-(new Table(SOURCE))->res
-);
+$source = (new Table(SOURCE))->res;
+
+sd($source);
