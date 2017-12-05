@@ -14,4 +14,10 @@ foreach ($source as $key => &$value) {
     $value->diff( $target[$key] );
 }
 
-sd($source);
+foreach ($source as $key => $value) {
+    if (!empty($value->diffmap)) {
+        foreach ($value->diffmap as $k => $v) {
+            echo "$k:$v\n";
+        }
+    }
+}

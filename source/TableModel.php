@@ -55,12 +55,18 @@ class TableModel {
     public function diff(TableModel $model){
         $this->diffmap = array_diff_key($this->childen,$model->childen);
         foreach ($this->childen as $key => $value) {
-            if (!isset($model->childen)) {
+            if (!isset($model->childen[$key])) {
                 $this->diffmap[$key] = 'del';
                 continue;
             }
             if ($value != $model->childen[$key]) {
                 $this->diffmap[$key] = 'eidt';
+            }
+            unset($model->childen[$key]);
+        }
+        if (!empty($model->childen)) {
+            foreach ($model->childen as $key => $value) {
+                $this->diffmap[$key] = 'add';
             }
         }
     }

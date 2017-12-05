@@ -2,7 +2,7 @@
 define("SOURCE", [
     'driver'    => 'mysql',
     'host'      => '127.0.0.1',
-    'database'  => 'test',
+    'database'  => 'we7',
     'username'  => 'root',
     'password'  => '123456',
     'charset'   => 'utf8',
@@ -12,7 +12,7 @@ define("SOURCE", [
 define("TARGET", [
     'driver'    => 'mysql',
     'host'      => '127.0.0.1',
-    'database'  => 'test2',
+    'database'  => 'we71',
     'username'  => 'root',
     'password'  => '123456',
     'charset'   => 'utf8',
