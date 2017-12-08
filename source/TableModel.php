@@ -56,19 +56,23 @@ class TableModel {
         $this->diffmap = array_diff_key($this->childen,$model->childen);
         foreach ($this->childen as $key => $value) {
             if (!isset($model->childen[$key])) {
-                $this->diffmap[$key] = 'del';
+                $this->diffmap[$key] = "del $this->name:$key";
                 continue;
             }
             if ($value != $model->childen[$key]) {
-                $this->diffmap[$key] = 'eidt';
+                $this->diffmap[$key] = "edit $this->name:$key->".$model->childen[$key];
             }
             unset($model->childen[$key]);
         }
         if (!empty($model->childen)) {
             foreach ($model->childen as $key => $value) {
-                $this->diffmap[$key] = 'add';
+                $this->diffmap[$key] = "add $this->name:$key";
             }
         }
+    }
+
+    private function bulidSql($key,$value){
+
     }
 
 }
